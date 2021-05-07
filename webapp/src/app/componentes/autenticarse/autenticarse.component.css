@@ -1,0 +1,17 @@
+.agesic-button{
+    height: 60px;
+    display: flex;
+    width: 300px;
+    justify-content: center;
+    align-items: center;
+    font-size: 22px;
+    border-radius: 20px;
+    margin: 0 auto;
+    background-color: #3155a5;
+}
+.agesic-button:hover{
+    background-color: #3671f1;
+}
+.agesic-yellow{
+    color:#ffe35c
+}
