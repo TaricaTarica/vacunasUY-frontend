@@ -2,9 +2,13 @@ import { AuthConfig } from 'angular-oauth2-oidc';
  
 export const authConfig: AuthConfig = {
 
-  issuer: 'https://auth-testing.iduruguay.gub.uy/oidc/v1/authorize?',
+  issuer: 'https://auth-testing.iduruguay.gub.uy/',
 
   redirectUri: 'https://openidconnect.net/callback',
+
+  tokenEndpoint: 'https://auth-testing.iduruguay.gub.uy/oidc/v1/token',
+
+  loginUrl: 'https://auth-testing.iduruguay.gub.uy/oidc/v1/authorize',
 
   clientId: '890192',
   
