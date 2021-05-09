@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthConfig, OAuthService } from 'angular-oauth2-oidc';
+import { authConfig } from 'src/app/sso.config';
 
 @Component({
   selector: 'app-autenticarse',
@@ -7,9 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AutenticarseComponent implements OnInit {
 
-  constructor() { }
-
+  constructor(private oauthService: OAuthService) {
+    this.configureSingleSingOn();
+  }
+  configureSingleSingOn(){
+    this.oauthService.initCodeFlow();
+    this.oauthService.configure(authConfig);
+    this.oauthService.loadDiscoveryDocumentAndTryLogin();
+  }
   ngOnInit(): void {
+  }
+
+  login(){
+    this.oauthService.initLoginFlow();
   }
 
 }

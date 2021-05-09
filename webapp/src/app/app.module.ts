@@ -6,6 +6,10 @@ import { HeaderComponent } from './componentes/header/header.component';
 import { FooterComponent } from './componentes/footer/footer.component';
 import { AutenticarseComponent } from './componentes/autenticarse/autenticarse.component';
 import { Routes, RouterModule } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http'
+/*OAuth*/
+import { OAuthModule } from 'angular-oauth2-oidc';
+
 
 const rutas: Routes = [
   { path: '', component: AppComponent },
@@ -21,7 +25,9 @@ const rutas: Routes = [
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(rutas)
+    RouterModule.forRoot(rutas),
+    OAuthModule.forRoot(),
+    HttpClientModule  
   ],
   providers: [],
   bootstrap: [AppComponent]
