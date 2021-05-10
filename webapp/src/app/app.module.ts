@@ -26,7 +26,12 @@ const rutas: Routes = [
   imports: [
     BrowserModule,
     RouterModule.forRoot(rutas),
-    OAuthModule.forRoot(),
+    OAuthModule.forRoot({
+      resourceServer: {
+          allowedUrls: ['https://auth-testing.iduruguay.gub.uy/oidc/v1/'],
+          sendAccessToken: true
+      }
+  }),
     HttpClientModule  
   ],
   providers: [],
