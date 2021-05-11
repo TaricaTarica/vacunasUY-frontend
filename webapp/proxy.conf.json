@@ -1,5 +1,5 @@
 {
-    "/oidc/v1/*": {
+    "/*": {
     "target": "https://auth-testing.iduruguay.gub.uy",
     "secure": false,
     "changeOrigin": true
