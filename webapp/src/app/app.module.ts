@@ -28,7 +28,7 @@ const rutas: Routes = [
     RouterModule.forRoot(rutas),
     OAuthModule.forRoot({
       resourceServer: {
-          allowedUrls: ['https://auth-testing.iduruguay.gub.uy/oidc/v1/'],
+          allowedUrls: ['http://localhost:8080/gubuy/'],
           sendAccessToken: true
       }
   }),

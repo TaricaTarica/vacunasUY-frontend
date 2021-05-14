@@ -9,29 +9,10 @@ import { authConfig } from 'src/app/sso.config';
 })
 export class AutenticarseComponent implements OnInit {
 
-  constructor(private oauthService: OAuthService) {
-    this.configureSingleSingOn();
-
-  }
-  configureSingleSingOn(){
-    this.oauthService.initCodeFlow();
-    this.oauthService.configure(authConfig);
-  }
+  
   ngOnInit(): void {
   }
 
-  login(){
-    this.oauthService
-    .loadDiscoveryDocument('https://auth-testing.iduruguay.gub.uy/oidc/v1/.well-known/openid-configuration')
-    .then(() => this.oauthService.tryLogin());
-  }
 
-  logout(){
-    this.oauthService.logOut();
-  }
-
-  token(){
-    console.log( this.oauthService.getAccessToken());
-  }
 
 }

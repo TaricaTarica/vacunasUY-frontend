@@ -6,13 +6,9 @@ export const authConfig: AuthConfig = {
 
   redirectUri: 'http://localhost:8080',
 
-  tokenEndpoint: 'https://auth-testing.iduruguay.gub.uy/oidc/v1/token',
+  loginUrl: 'http://localhost:8080/gubuy/authorize',
 
-  loginUrl: 'https://auth-testing.iduruguay.gub.uy/oidc/v1/authorize',
-
-  logoutUrl: 'https://auth-testing.iduruguay.gub.uy/oidc/v1/logout',
-
-  userinfoEndpoint: 'https://auth-testing.iduruguay.gub.uy/oidc/v1/userinfo',
+  logoutUrl: 'http://localhost:8080/gubuy/logout',
 
   clientId: '890192',
   
@@ -20,10 +16,12 @@ export const authConfig: AuthConfig = {
 
   responseType: 'code',
 
-  scope: 'openid%20personal%20email',
+  scope: 'openid personal_info email document',
 
   showDebugInformation: true,
 
-  strictDiscoveryDocumentValidation: false,
+  requestAccessToken: true,
+
+  oidc: false
 
 };

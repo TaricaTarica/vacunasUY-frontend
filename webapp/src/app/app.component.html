@@ -13,9 +13,8 @@
 </head>
   <body>
     <app-header></app-header>
-    <router-outlet></router-outlet>
-    <button *ngIf="code" (click)="sendReqToken()">Enviar Token Request</button>
-    <button *ngIf="token" (click)="getToken()">token</button>
+    <button (click)="login()">auth</button>
+    <button (click)="userinfo()">userInfo</button>
     <app-footer></app-footer>
   </body>
 </html>

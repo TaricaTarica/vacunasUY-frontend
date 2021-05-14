@@ -1,7 +1,10 @@
 {
-    "/*": {
-    "target": "https://auth-testing.iduruguay.gub.uy",
-    "secure": false,
-    "changeOrigin": true
-    }
+    "/gubuy": {
+        "target": "https://auth-testing.iduruguay.gub.uy/oidc/v1",
+        "secure": true,
+        "changeOrigin": true,
+        "pathRewrite": {
+          "^/gubuy": ""
+        }
+      }
 }
