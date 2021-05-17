@@ -6,9 +6,9 @@ export const authConfig: AuthConfig = {
 
   redirectUri: 'http://localhost:8080',
 
-  loginUrl: 'http://localhost:8080/gubuy/authorize',
+  loginUrl: '/gubuy/authorize',
 
-  logoutUrl: 'http://localhost:8080/gubuy/logout',
+  logoutUrl: '/gubuy/logout',
 
   clientId: '890192',
   
@@ -22,6 +22,8 @@ export const authConfig: AuthConfig = {
 
   requestAccessToken: true,
 
-  oidc: false
+  oidc: false,
+  
+  requireHttps: false
 
 };

@@ -1,11 +1,7 @@
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { Component, NgModule, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
 import { OAuthService } from 'angular-oauth2-oidc';
 import { JwksValidationHandler } from 'angular-oauth2-oidc-jwks';
-import { Token } from './interfaces/token';
 import { authConfig } from 'src/app/sso.config';
-import { Injectable } from '@angular/core';
 
 
 @Component({
@@ -14,26 +10,27 @@ import { Injectable } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 
-@Injectable()
 export class AppComponent implements OnInit{
 
-  constructor(private oauthService: OAuthService) {
-    this.configureSingleSingOn();
+  userName: any;
+  loggedIn: boolean;
 
+  constructor(private oauthService: OAuthService) {
   }
   configureSingleSingOn(){
     this.oauthService.tokenValidationHandler = new JwksValidationHandler();
     this.oauthService.configure(authConfig);    
     this.oauthService
-    .loadDiscoveryDocument('http://localhost:8080/gubuy/.well-known/openid-configuration')
+    .loadDiscoveryDocument('/gubuy/.well-known/openid-configuration')
     .then(() => {
-      this.oauthService.tokenEndpoint ='http://localhost:8080/gubuy/token';
-      this.oauthService.userinfoEndpoint ='http://localhost:8080/gubuy/userinfo';
+      this.oauthService.tokenEndpoint ='/gubuy/token';
+      this.oauthService.userinfoEndpoint ='/gubuy/userinfo';
       this.oauthService.tryLogin();
-    })    
+    }) 
   }
-
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.configureSingleSingOn();
+  }
 
   login(){
     this.oauthService.initImplicitFlow();
@@ -44,7 +41,12 @@ export class AppComponent implements OnInit{
   }
 
   userinfo(){
-    console.log(this.oauthService.loadUserProfile())
+    //let claims = this.oauthService.getIdentityClaims();
+    //console.log(claims['primer_nombre']);
+    this.oauthService.loadUserProfile().then(user =>{
+      this.userName = user['nombre_completo'];
+      //console.log(user);
+    });
+     console.log(this.oauthService.loadUserProfile());
   }
-  
 }

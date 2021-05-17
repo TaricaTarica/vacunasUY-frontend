@@ -12,10 +12,20 @@
   <title>VacunasUY</title>
 </head>
   <body>
-    <app-header></app-header>
-    <button (click)="login()">auth</button>
-    <button (click)="userinfo()">userInfo</button>
+    <nav class="menu-principal">
+      <div class="nav-wrapper">
+          <a href="#" class="brand-logo">VacunasUY</a>
+          <ul id="nav-mobile" class="right hide-on-med-and-down">
+          <li><a (click)="login()">Autenticarse</a></li>
+          <li><a routerLink="/agendarse"> Agendarse</a></li>
+          </ul>
+      </div>
+    </nav>
+    <button (click)="userinfo()">test</button>
+    <router-outlet></router-outlet>
     <app-footer></app-footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   </body>
 </html>
 

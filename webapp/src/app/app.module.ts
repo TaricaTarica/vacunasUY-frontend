@@ -2,37 +2,46 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './componentes/header/header.component';
 import { FooterComponent } from './componentes/footer/footer.component';
 import { AutenticarseComponent } from './componentes/autenticarse/autenticarse.component';
 import { Routes, RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http'
-/*OAuth*/
 import { OAuthModule } from 'angular-oauth2-oidc';
+import { AgendaComponent } from './componentes/agenda/agenda.component';
+import { HomeComponent } from './componentes/home/home.component';
+
+import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 
 const rutas: Routes = [
-  { path: '', component: AppComponent },
-  { path: 'autenticarse', component: AutenticarseComponent }
+  { path: '', component: HomeComponent },
+  { path: 'autenticarse', component: AutenticarseComponent },
+  { path: 'agendarse', component: AgendaComponent}
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
     FooterComponent,
-    AutenticarseComponent
+    AutenticarseComponent,
+    AgendaComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     RouterModule.forRoot(rutas),
     OAuthModule.forRoot({
       resourceServer: {
           allowedUrls: ['http://localhost:8080/gubuy/'],
           sendAccessToken: true
-      }
+      },
+    
   }),
-    HttpClientModule  
+    HttpClientModule,
+    BrowserAnimationsModule  
   ],
   providers: [],
   bootstrap: [AppComponent]
