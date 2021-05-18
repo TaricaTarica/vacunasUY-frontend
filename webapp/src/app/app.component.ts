@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { OAuthService } from 'angular-oauth2-oidc';
-import { JwksValidationHandler } from 'angular-oauth2-oidc-jwks';
-import { authConfig } from 'src/app/sso.config';
+import { GubuyService } from './servicios/gubuy.service';
 
 
 @Component({
@@ -13,40 +11,20 @@ import { authConfig } from 'src/app/sso.config';
 export class AppComponent implements OnInit{
 
   userName: any;
-  loggedIn: boolean;
 
-  constructor(private oauthService: OAuthService) {
+  constructor(private gubuy:GubuyService) {
   }
-  configureSingleSingOn(){
-    this.oauthService.tokenValidationHandler = new JwksValidationHandler();
-    this.oauthService.configure(authConfig);    
-    this.oauthService
-    .loadDiscoveryDocument('/gubuy/.well-known/openid-configuration')
-    .then(() => {
-      this.oauthService.tokenEndpoint ='/gubuy/token';
-      this.oauthService.userinfoEndpoint ='/gubuy/userinfo';
-      this.oauthService.tryLogin();
-    }) 
-  }
+  
   ngOnInit(): void {
-    this.configureSingleSingOn();
+    this.gubuy.configureSingleSingOn();
   }
 
   login(){
-    this.oauthService.initImplicitFlow();
+    this.gubuy.login();
+  }
+  username(){
+    console.log(this.gubuy.userinfo());
+    this.userName = this.gubuy.userinfo();
   }
 
-  logout(){
-    this.oauthService.logOut();
-  }
-
-  userinfo(){
-    //let claims = this.oauthService.getIdentityClaims();
-    //console.log(claims['primer_nombre']);
-    this.oauthService.loadUserProfile().then(user =>{
-      this.userName = user['nombre_completo'];
-      //console.log(user);
-    });
-     console.log(this.oauthService.loadUserProfile());
-  }
 }

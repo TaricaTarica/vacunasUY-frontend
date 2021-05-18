@@ -4,6 +4,8 @@ import { PlanVacunacion } from 'src/app/interfaces/PlanVacunacion';
 import { Departamento } from 'src/app/interfaces/Departamento';
 import { Ubicacion } from 'src/app/interfaces/Ubicacion';
 
+declare function toastMensaje(value: any): any;
+
 @Component({
   selector: 'app-agenda',
   templateUrl: './agenda.component.html',
@@ -28,17 +30,16 @@ export class AgendaComponent implements OnInit {
     this.ubicacionSeleccionada = '0';
     this.planSeleccionado = '0';
     this.departamentoSeleccionado = '0';
-
   }
   capturarPlan(){
     console.log('dpto', this.departamentoSeleccionado);
     console.log('plan', this.planSeleccionado);
     console.log('ubi', this.ubicacionSeleccionada);
-    this.mensaje = "exito manito";
+    this.mensaje = " manito";
+    toastMensaje(this.mensaje);
   }
   capturarDepartamento(){
     this.servicioAgenda.getUbicaciones(this.departamentoSeleccionado).subscribe(ubi => this.ubicaciones = ubi);
-
   }
 
 

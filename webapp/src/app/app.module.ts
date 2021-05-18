@@ -12,6 +12,10 @@ import { HomeComponent } from './componentes/home/home.component';
 
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HeaderComponent } from './componentes/header/header.component';
+
+import { JwksValidationHandler } from 'angular-oauth2-oidc-jwks';
+
 
 
 
@@ -27,11 +31,12 @@ const rutas: Routes = [
     FooterComponent,
     AutenticarseComponent,
     AgendaComponent,
-    HomeComponent
+    HomeComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
-    FormsModule,
+    FormsModule, 
     RouterModule.forRoot(rutas),
     OAuthModule.forRoot({
       resourceServer: {
@@ -43,7 +48,7 @@ const rutas: Routes = [
     HttpClientModule,
     BrowserAnimationsModule  
   ],
-  providers: [],
+  providers: [JwksValidationHandler],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

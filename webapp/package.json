@@ -23,6 +23,7 @@
     "@angular/router": "~11.2.10",
     "angular-oauth2-oidc": "^10.0.3",
     "angular-oauth2-oidc-jwks": "^9.0.0",
+    "materialize-css": "^1.0.0",
     "ngx-materialize": "^6.1.3",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
