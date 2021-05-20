@@ -1,7 +1,9 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Departamento } from '../interfaces/Departamento';
 import { PlanVacunacion } from '../interfaces/PlanVacunacion'
+import { Reserva } from '../interfaces/Reserva';
 import { Ubicacion } from '../interfaces/Ubicacion';
 
 @Injectable({
@@ -26,5 +28,12 @@ export class AgendaServiceService {
       return this.http.get<Ubicacion>(this.url_api+"departamentos/ubicaciones/"+departamento)
     }
   }
+  crearReservar(reserva: Reserva): Observable<any>{
+    return this.http.post<Reserva>(this.url_api+"reserva", reserva);
+  }
+
+
 
 }
+
+

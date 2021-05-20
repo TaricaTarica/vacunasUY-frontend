@@ -32,10 +32,10 @@ export class GubuyService implements OnInit{
     this.oauthService.initImplicitFlow();
   }
   userinfo(): any{
-    this.oauthService.loadUserProfile();
-    let claims = this.oauthService.getIdentityClaims();
+    return this.oauthService.loadUserProfile();
+    /*let claims = this.oauthService.getIdentityClaims();
     return claims['primer_nombre'];
-    /*var nombre; 
+    var nombre; 
     this.oauthService.loadUserProfile().then(user =>{
       console.log(user['nombre_completo']);
       nombre = user['nombre_completo'];

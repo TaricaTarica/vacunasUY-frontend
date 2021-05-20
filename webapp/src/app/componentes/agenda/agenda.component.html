@@ -7,7 +7,7 @@
     </div>
     <form class="row">
     <div class="input-field col s6">
-        <select [(ngModel)]="planSeleccionado" (change)="capturarPlan()" [ngModelOptions]="{standalone: true}">
+        <select [(ngModel)]="planSeleccionado" [ngModelOptions]="{standalone: true}">
             <option value="0" disabled>Elegí tu plan</option>
             <option [value]="plan.nombre" *ngFor="let plan of planes">
               {{plan.nombre}}
@@ -23,7 +23,7 @@
         </select>
     </div>
     <div class="input-field col s12">
-        <select [(ngModel)]="ubicacionSeleccionada" (change)="capturarPlan()" [ngModelOptions]="{standalone: true}">
+        <select [(ngModel)]="ubicacionSeleccionada" [ngModelOptions]="{standalone: true}">
             <option value="0" disabled> Elegí tu Ubicacion</option>
             <option [value]="u.description" *ngFor="let u of ubicaciones">
               {{u.description}}
