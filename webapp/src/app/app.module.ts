@@ -19,12 +19,14 @@ import { AgendasComponent, modalInfo } from './componentes/agendas/agendas.compo
 
 import { MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
 import { CommonModule } from '@angular/common';
+import { ConsultaReservaComponent } from './componentes/consulta-reserva/consulta-reserva.component';
 
 const rutas: Routes = [
   { path: '', component: HomeComponent },
   { path: 'autenticarse', component: AutenticarseComponent },
-  { path: 'agendarse', component: AgendaComponent},
-  { path: 'agendas-activas', component: AgendasComponent}
+  { path: 'agendarse', component: AgendaComponent },
+  { path: 'agendas-activas', component: AgendasComponent },
+  { path: 'consulta-reserva', component: ConsultaReservaComponent }
 ];
 
 @NgModule({
@@ -36,7 +38,8 @@ const rutas: Routes = [
     HomeComponent,
     HeaderComponent,
     AgendasComponent,
-    modalInfo
+    modalInfo,
+    ConsultaReservaComponent
   ],
   entryComponents: [
     modalInfo

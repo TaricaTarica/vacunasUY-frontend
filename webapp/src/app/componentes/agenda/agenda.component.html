@@ -1,39 +1,54 @@
-<div class="container">
-    <div class="horizontal-center">
-        <div class="icon-circle">
-            <i class="large material-icons">assignment</i>
+
+<div class="row">
+    <div class="col s3">
+        <div class="container">
+            <div class="collection">
+                <a routerLink="/agendarse" class="collection-item  active">Reservar</a>
+                <a routerLink="/consulta-reserva" class="collection-item">Consultar reservas</a>
+                <a href="#!" class="collection-item">Modificar reserva</a>
+            </div>
         </div>
-        <h2>Agendarse</h2>
     </div>
-    <form class="row">
-    <div class="input-field col s6">
-        <select [(ngModel)]="planSeleccionado" [ngModelOptions]="{standalone: true}">
-            <option value="0" disabled>Elegí tu plan</option>
-            <option [value]="plan.nombre" *ngFor="let plan of planes">
-              {{plan.nombre}}
-            </option>
-        </select>
+    <div class="col s8">
+        <div class="container">
+            <div class="horizontal-center">
+                <div class="icon-circle">
+                    <i class="large material-icons">assignment</i>
+                </div>
+                <h2>Agendarse</h2>
+            </div>
+            <form class="row">
+            <div class="input-field col s6">
+                <select [(ngModel)]="planSeleccionado" [ngModelOptions]="{standalone: true}">
+                    <option value="0" disabled>Elegí tu plan</option>
+                    <option [value]="plan.nombre" *ngFor="let plan of planes">
+                    {{plan.nombre}}
+                    </option>
+                </select>
+            </div>
+            <div class="input-field col s6">
+                <select [(ngModel)]="departamentoSeleccionado" (change)="capturarDepartamento()" [ngModelOptions]="{standalone: true}">
+                    <option value="0" disabled>Elegí tu Departamento</option>
+                    <option [value]="d.descripcion" *ngFor="let d of departamentos">
+                    {{d.descripcion}}
+                    </option>
+                </select>
+            </div>
+            <div class="input-field col s12">
+                <select [(ngModel)]="ubicacionSeleccionada" [ngModelOptions]="{standalone: true}">
+                    <option value="0" disabled> Elegí tu Ubicacion</option>
+                    <option [value]="u.description" *ngFor="let u of ubicaciones">
+                    {{u.description}}
+                    </option>
+                </select>
+            </div>
+            <div class="center">
+                <button (click)="capturarPlan()" class="btn center" type="submit" name="action">
+                    Confirmar
+                </button>
+            </div>
+            </form>
+        </div>
     </div>
-    <div class="input-field col s6">
-        <select [(ngModel)]="departamentoSeleccionado" (change)="capturarDepartamento()" [ngModelOptions]="{standalone: true}">
-            <option value="0" disabled>Elegí tu Departamento</option>
-            <option [value]="d.descripcion" *ngFor="let d of departamentos">
-              {{d.descripcion}}
-            </option>
-        </select>
-    </div>
-    <div class="input-field col s12">
-        <select [(ngModel)]="ubicacionSeleccionada" [ngModelOptions]="{standalone: true}">
-            <option value="0" disabled> Elegí tu Ubicacion</option>
-            <option [value]="u.description" *ngFor="let u of ubicaciones">
-              {{u.description}}
-            </option>
-        </select>
-    </div>
-    <div class="center">
-        <button (click)="capturarPlan()" class="btn center" type="submit" name="action">
-            Confirmar
-        </button>
-    </div>
-    </form>
 </div>
+    

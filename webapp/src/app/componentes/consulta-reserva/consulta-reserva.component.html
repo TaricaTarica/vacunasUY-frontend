@@ -1,0 +1,36 @@
+<div class="row">
+    <div class="col s3">
+        <div class="container">
+            <div class="collection">
+                <a routerLink="/agendarse" class="collection-item">Reservar</a>
+                <a routerLink="/consulta-reserva" class="collection-item active">Consultar reservas</a>
+                <a href="#!" class="collection-item">Modificar reserva</a>
+            </div>
+        </div>
+    </div>
+    <div class="col s8">
+        <div class="container">
+            <div class="horizontal-center">
+                <h2>Consulta Reserva</h2>
+            </div>
+            <table *ngIf="consultas" class="highlight responsive-table">
+                <thead>
+                  <tr>
+                    <th>Enfermedad</th>
+                    <th>Fecha</th>
+                    <th>Hora</th>
+                    <th>Vacunatorio</th>
+                  </tr>
+                </thead>
+                <tbody *ngFor="let consulta of consultas">
+                  <tr>
+                    <td>{{ consulta.enfermedad }}</td>
+                    <td>{{ consulta.fecha }}</td>
+                    <td>{{ consulta.hora }}</td>
+                    <td>{{ consulta.vacunatorio }}</td>
+                  </tr>
+                </tbody>
+              </table>
+        </div>
+    </div>
+</div>
