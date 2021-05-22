@@ -1,0 +1,25 @@
+<div class="right">
+  <a class="btn-flat " (click)="onNoClick()">
+    <i class="material-icons white-text">close</i>
+  </a>
+</div>
+<table class="highlight responsive-table">
+  <thead>
+    <tr>
+        <th>Plan de Vacunacion</th>
+        <th>Enfermedad</th>
+        <th>Poblacion objetivo</th>
+        <th>Edad máxima</th>
+        <th>Edad mínima</th>
+    </tr>
+  </thead>
+  <tbody *ngFor="let plan of data.data">
+    <tr>
+      <td>{{ plan.nombre }}</td>
+      <td>{{ plan.enfermedad.nombre }}</td>
+      <td>{{ plan.poblacionObjetivo }}</td>
+      <td>{{ plan.edadMaxima }}</td>
+      <td>{{ plan.edadMinima }}</td>
+    </tr>
+  </tbody>
+</table>

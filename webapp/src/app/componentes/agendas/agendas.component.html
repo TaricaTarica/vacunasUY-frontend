@@ -1,0 +1,30 @@
+<div class="container">
+    <table *ngIf="agendas" class="highlight responsive-table">
+        <thead>
+          <tr>
+              <th>Código</th>
+              <th>Fecha inicio</th>
+              <th>Fecha fin</th>
+              <th>Hora inicio</th>
+              <th>Hora fin</th>
+              <th>Vacunatorio</th>
+              <th></th>
+          </tr>
+        </thead>
+        <tbody *ngFor="let agenda of agendas">
+          <tr>
+            <td>{{ agenda.id }}</td>
+            <td>{{ agenda.inicio }}</td>
+            <td>{{ agenda.fin }}</td>
+            <td>{{ agenda.horaIncio }}</td>
+            <td>{{ agenda.horaFin }}</td>
+            <td>{{ agenda.dtVacunatorio.nombre }}</td>
+            <td>
+              <button class="btn center grey" mat-button (click)="masInfo(agenda.listDtPlanVacunacion)">
+                Ver Planes
+              </button>
+          </td>
+          </tr>
+        </tbody>
+      </table>
+</div>

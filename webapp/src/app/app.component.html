@@ -7,17 +7,7 @@
   <title>VacunasUY</title>
 </head>
   <body>
-    <nav class="menu-principal">
-      <div class="nav-wrapper">
-          <a href="#" class="brand-logo">VacunasUY</a>
-          <ul id="nav-mobile" class="right hide-on-med-and-down">
-          <li *ngIf="!userName"><a (click)="login()">Autenticarse</a></li>
-          <li *ngIf="userName">{{ userName }}</li>
-          <li><a routerLink="/agendarse"> Agendarse</a></li>
-          </ul>
-      </div>
-      <button (click)="username()">test</button>
-    </nav>
+    <app-header></app-header>
     <router-outlet></router-outlet>
     <app-footer></app-footer>
   </body>
