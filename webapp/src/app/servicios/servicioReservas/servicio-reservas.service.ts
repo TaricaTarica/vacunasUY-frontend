@@ -34,4 +34,7 @@ export class ServicioReservasService {
   consultarReservasCiudadano(ci: String){
     return this.http.get<ConsultaReservaCiudadano[]>(this.url_api+`reserva/${ci}`)
   }
+  cancelarReserva(id: String){
+    return this.http.put<String>(this.url_api+"reserva/cancelar", id);
+  }
 }

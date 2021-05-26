@@ -19,7 +19,7 @@ import { AgendasComponent, modalInfo } from './componentes/agendas/agendas.compo
 
 import { MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
 import { CommonModule } from '@angular/common';
-import { ConsultaReservaComponent } from './componentes/consulta-reserva/consulta-reserva.component';
+import { confirmarCancelarReserva, ConsultaReservaComponent } from './componentes/consulta-reserva/consulta-reserva.component';
 
 const rutas: Routes = [
   { path: '', component: HomeComponent },
@@ -39,6 +39,7 @@ const rutas: Routes = [
     HeaderComponent,
     AgendasComponent,
     modalInfo,
+    confirmarCancelarReserva,
     ConsultaReservaComponent
   ],
   entryComponents: [

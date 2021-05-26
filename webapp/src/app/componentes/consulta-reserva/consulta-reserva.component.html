@@ -4,7 +4,6 @@
             <div class="collection">
                 <a routerLink="/agendarse" class="collection-item">Reservar</a>
                 <a routerLink="/consulta-reserva" class="collection-item active">Consultar reservas</a>
-                <a href="#!" class="collection-item">Modificar reserva</a>
             </div>
         </div>
     </div>
@@ -20,6 +19,8 @@
                     <th>Fecha</th>
                     <th>Hora</th>
                     <th>Vacunatorio</th>
+                    <th>Estado</th>
+                    <th></th>
                   </tr>
                 </thead>
                 <tbody *ngFor="let consulta of consultas">
@@ -28,6 +29,12 @@
                     <td>{{ consulta.fecha }}</td>
                     <td>{{ consulta.hora }}</td>
                     <td>{{ consulta.vacunatorio }}</td>
+                    <td>{{ consulta.estado }}</td>
+                    <td *ngIf="consulta.estado == 'Pendiente'">
+                      <button class="btn center red lighten-2" mat-button (click)="cancelarReserva(consulta.id)">
+                        Cancelar
+                      </button>
+                    </td>
                   </tr>
                 </tbody>
               </table>

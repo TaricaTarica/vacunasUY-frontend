@@ -8,5 +8,7 @@ export interface ConsultaReservaCiudadano {
     
     id: String,
     
-    vacunatorio: String
+    vacunatorio: String,
+
+    estado: String
 }
