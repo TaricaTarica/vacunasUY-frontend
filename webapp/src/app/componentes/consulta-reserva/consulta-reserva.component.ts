@@ -27,7 +27,6 @@ export class ConsultaReservaComponent implements OnInit {
       }
     });
     dialogRef.afterClosed().subscribe(result => {
-      console.log(result.id);
       this.servicioReserva.cancelarReserva(result.id).subscribe();
     });
   }

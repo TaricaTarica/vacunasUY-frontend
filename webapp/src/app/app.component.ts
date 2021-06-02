@@ -21,9 +21,5 @@ export class AppComponent implements OnInit{
   login(){
     this.gubuy.login();
   }
-  username(){
-    console.log(this.gubuy.userinfo());
-    this.userName = this.gubuy.userinfo();
-  }
 
 }

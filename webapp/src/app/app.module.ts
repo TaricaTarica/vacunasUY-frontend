@@ -53,7 +53,7 @@ const rutas: Routes = [
     RouterModule.forRoot(rutas),
     OAuthModule.forRoot({
       resourceServer: {
-          allowedUrls: ['http://localhost:8080/gubuy/'],
+          allowedUrls: ['http://localhost/gubuy/'],
           sendAccessToken: true
       },
     

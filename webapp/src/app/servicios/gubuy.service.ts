@@ -1,15 +1,18 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable, OnInit } from '@angular/core';
-import { JwksValidationHandler, OAuthService } from 'angular-oauth2-oidc';
+import { OAuthService } from 'angular-oauth2-oidc';
+import { JwksValidationHandler } from 'angular-oauth2-oidc-jwks'
+import { Usuario } from '../interfaces/Usuario';
 import { authConfig } from '../sso.config';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GubuyService implements OnInit{
+ 
+  public user: Usuario;
 
   constructor(private oauthService: OAuthService) { 
-  
+    
   }
 
   configureSingleSingOn(){
@@ -20,26 +23,41 @@ export class GubuyService implements OnInit{
     .then(() => {
       this.oauthService.tokenEndpoint ='/gubuy/token';
       this.oauthService.userinfoEndpoint ='/gubuy/userinfo';
-      this.oauthService.tryLogin();
-    }) 
+      this.oauthService.tryLogin().then(() => {
+        console.log('getAccessToken : ', this.oauthService.hasValidAccessToken()),
+        this.oauthService.loadUserProfile().then(user => {
+          if(this.oauthService.hasValidAccessToken()){
+            if(user != null){
+              this.user = {
+                nombre_completo: user.nombre_completo,
+                email: user.email,
+                numero_documento: user.numero_documento
+               }
+               sessionStorage.setItem('userLogged', JSON.stringify(this.user));
+            }
+            else{
+              sessionStorage.clear();  
+            }
+          }
+          else{
+            sessionStorage.clear();
+          }
+        });
+      });
+    })
   }
 
   ngOnInit(): void {
-    this.configureSingleSingOn();
+    
+    //this.configureSingleSingOn();
   }
 
   login(){
     this.oauthService.initImplicitFlow();
   }
-  userinfo(): any{
-    return this.oauthService.loadUserProfile();
-    /*let claims = this.oauthService.getIdentityClaims();
-    return claims['primer_nombre'];
-    var nombre; 
-    this.oauthService.loadUserProfile().then(user =>{
-      console.log(user['nombre_completo']);
-      nombre = user['nombre_completo'];
-    });
-    return nombre; */
+  
+  getEmail(): String{
+    return this.user.email;
   }
+  
 }

@@ -4,11 +4,11 @@ export const authConfig: AuthConfig = {
 
   issuer: 'https://auth-testing.iduruguay.gub.uy',
 
-  redirectUri: 'http://localhost:8080',
+  redirectUri: 'http://localhost',
 
-  loginUrl: 'http://localhost:8080/gubuy/authorize',
+  loginUrl: 'http://localhost/gubuy/authorize',
 
-  logoutUrl: 'http://localhost:8080/gubuy/logout',
+  logoutUrl: 'http://localhost/gubuy/logout',
 
   clientId: '890192',
   

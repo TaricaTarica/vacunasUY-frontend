@@ -43,14 +43,10 @@ export class AgendaComponent implements OnInit {
       'planVacunacion':  this.planSeleccionado,
       'ubicacion': this.ubicacionSeleccionada
     }
-
     this.servicioReserva.crearReservar(this.reserva).subscribe(
-      data => console.log('success', data),
-      error => console.log('oops', error.error)
+      data => this.mensaje = data,
+      error =>  toastMensaje(error.error.text) 
     );
-    console.log(this.mensaje);
-    //this.mensaje = " manito";
-    toastMensaje(this.mensaje);
   }
   capturarDepartamento(){
     this.servicioReserva.getUbicaciones(this.departamentoSeleccionado).subscribe(ubi => this.ubicaciones = ubi);
