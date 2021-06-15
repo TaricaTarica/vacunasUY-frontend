@@ -20,10 +20,13 @@ export class HeaderComponent implements OnInit {
     } 
 
     this.gubuy.setUser.subscribe( user => this.user = user );
-    
+
   }
   autenticarse(){
     this.gubuy.login();
+  }
+  logout(){
+    this.gubuy.logout();
   }
 
 }

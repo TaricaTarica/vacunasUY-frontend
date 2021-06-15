@@ -1,6 +1,6 @@
 <div class="top-login">
-    <a *ngIf="!user" (click)="autenticarse()">Ingresa con gubuy</a> 
-    <p *ngIf="user">Hola, {{ user.nombre_completo }}</p>
+    <a class="user-link" *ngIf="!user" (click)="autenticarse()">Ingresa con gubuy</a> 
+    <a class="user-link" *ngIf="user">Hola, {{ user.nombre_completo }} <a (click)="logout()"><i class="material-icons">exit_to_app</i></a></a>
 </div>
 <div class="head-center">
     <a href="./">

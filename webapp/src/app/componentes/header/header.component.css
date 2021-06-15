@@ -1,0 +1,6 @@
+.user-link{
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+    align-items: center;
+}
