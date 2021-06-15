@@ -15,7 +15,9 @@ export class AppComponent implements OnInit{
   }
   
   ngOnInit(): void {
-    this.gubuy.configureSingleSingOn();
+    console.log( 'ngOnInit appCompponent');
+   
+    //this.gubuy.configureSingleSingOn();
   }
 
   login(){
