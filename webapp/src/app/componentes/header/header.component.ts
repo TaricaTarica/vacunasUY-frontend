@@ -18,6 +18,9 @@ export class HeaderComponent implements OnInit {
     if (sessionStorage['userLogged']) {
       this.user = JSON.parse(sessionStorage.getItem("userLogged")) as Usuario;
     } 
+
+    this.gubuy.setUser.subscribe( user => this.user = user );
+    
   }
   autenticarse(){
     this.gubuy.login();

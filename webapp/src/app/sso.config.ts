@@ -10,6 +10,10 @@ export const authConfig: AuthConfig = {
 
   logoutUrl: 'http://localhost/gubuy/logout',
 
+  tokenEndpoint: 'http://localhost/gubuy/token',
+
+  userinfoEndpoint: 'http://localhost/gubuy/userinfo',
+
   clientId: '890192',
   
   dummyClientSecret: '457d52f181bf11804a3365b49ae4d29a2e03bbabe74997a2f510b179',
