@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { PerfilCiudadano } from 'src/app/interfaces/PerfilCiudadano';
 import { Usuario } from 'src/app/interfaces/Usuario';
 import { CiudadanoServiceService } from 'src/app/servicios/servicioCiudadano/ciudadano-service.service';
@@ -15,7 +16,7 @@ export class ConfirmarCiudadanoComponent implements OnInit {
   perfilCiudadano: PerfilCiudadano
   public user: Usuario
 
-  constructor(private ciudadanoService: CiudadanoServiceService) { }
+  constructor(private ciudadanoService: CiudadanoServiceService, private route: Router) { }
 
   ngOnInit(): void {
     if (sessionStorage['userLogged']) {
@@ -32,8 +33,12 @@ export class ConfirmarCiudadanoComponent implements OnInit {
   confirmar(){
     console.log("entro")
     this.ciudadanoService.crearCiudadano(this.user).subscribe(data => {
-      console.log(data) 
-      toastMensaje(data)
+      toastMensaje(data);
+      setTimeout(() => 
+      {
+          this.route.navigate(['/']);
+      },
+      5000);
     }
     )
   }
