@@ -16,8 +16,8 @@ export class AgendaServiceService {
 
   constructor(private http: HttpClient) { }
 
-  getPlanes(){
-    return this.http.get<PlanVacunacion>(this.url_api+"planvacunacion"); 
+  getPlanes(pObjetivo:any, fnac:any){
+    return this.http.get<PlanVacunacion>(this.url_api+"planvacunacion/" + pObjetivo + "/" + fnac); 
   }
   getDepartamentos(){
     return this.http.get<Departamento>(this.url_api+"departamentos");

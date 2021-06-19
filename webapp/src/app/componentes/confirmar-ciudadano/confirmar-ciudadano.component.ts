@@ -13,7 +13,6 @@ declare function toastMensaje(value: any): any;
 })
 export class ConfirmarCiudadanoComponent implements OnInit {
 
-  perfilCiudadano: PerfilCiudadano
   public user: Usuario
 
   constructor(private ciudadanoService: CiudadanoServiceService, private route: Router) { }
@@ -22,16 +21,9 @@ export class ConfirmarCiudadanoComponent implements OnInit {
     if (sessionStorage['userLogged']) {
       this.user = JSON.parse(sessionStorage.getItem("userLogged")) as Usuario;
     }
-    this.ciudadanoService.obtenerPerfilCiudadano(this.user.numero_documento).subscribe(data =>
-      this.perfilCiudadano = {
-        fnac: data.fnac, 
-        poblacionObjetivo: data.tipo
-      }
-    );
   }
 
   confirmar(){
-    console.log("entro")
     this.ciudadanoService.crearCiudadano(this.user).subscribe(data => {
       toastMensaje(data);
       setTimeout(() => 

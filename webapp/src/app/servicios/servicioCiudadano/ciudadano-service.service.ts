@@ -23,7 +23,6 @@ export class CiudadanoServiceService {
     const nombre_completo = usr.nombre_completo.split(" ");
 
     if(nombre_completo.length == 2){
-      console.log("siseñora")
       var ciudadano = {
         "ci": usr.numero_documento,
         "primerNombre": nombre_completo[0],

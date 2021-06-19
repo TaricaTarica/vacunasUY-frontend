@@ -21,6 +21,7 @@ import { MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/d
 import { CommonModule } from '@angular/common';
 import { confirmarCancelarReserva, ConsultaReservaComponent } from './componentes/consulta-reserva/consulta-reserva.component';
 import { ConfirmarCiudadanoComponent } from './componentes/confirmar-ciudadano/confirmar-ciudadano.component';
+import { MonitorVacunacionComponent } from './componentes/monitor-vacunacion/monitor-vacunacion.component';
 
 const rutas: Routes = [
   { path: '', component: HomeComponent },
@@ -43,7 +44,8 @@ const rutas: Routes = [
     modalInfo,
     confirmarCancelarReserva,
     ConsultaReservaComponent,
-    ConfirmarCiudadanoComponent
+    ConfirmarCiudadanoComponent,
+    MonitorVacunacionComponent
   ],
   entryComponents: [
     modalInfo

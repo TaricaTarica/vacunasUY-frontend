@@ -44,17 +44,24 @@ export class GubuyService implements OnInit{
                   nombre_completo: user.nombre_completo,
                   email: user.email,
                   numero_documento: user.numero_documento,
-                  vacunador: esVacunador
+                  vacunador: esVacunador,
+                  fnac: "",
+                  poblacionObjetivo: ""
                   }
-                  sessionStorage.setItem('userLogged', JSON.stringify(this.user));
-                  this.setUser.emit( this.user );
-                  if(esVacunador == false){
-                  this.ciudadanoService.existeCiudadano(this.user.numero_documento).subscribe(data => { 
+                  this.ciudadanoService.obtenerPerfilCiudadano(this.user.numero_documento).subscribe(data => {
+                    this.user.fnac = data.fnac;
+                    this.user.poblacionObjetivo = data.tipo;
+                    sessionStorage.setItem('userLogged', JSON.stringify(this.user));
+                    this.setUser.emit( this.user );
+                    if(esVacunador == false){
+                    this.ciudadanoService.existeCiudadano(this.user.numero_documento).subscribe(data => { 
                     if(data == false){
                       this.route.navigate(['/confirmar-ciudadano']);
                       }
                     });
                   }
+                  });
+                  
               }) 
             }
             else{
@@ -82,7 +89,6 @@ export class GubuyService implements OnInit{
     this.oauthService.logOut();
     sessionStorage.clear();
     this.setUser.emit( null );
-    console.log("terminó logout");
   }
   getEmail(): String{
     return this.user.email;

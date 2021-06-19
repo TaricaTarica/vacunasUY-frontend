@@ -29,7 +29,7 @@
                     <td>{{ consulta.fecha }}</td>
                     <td>{{ consulta.hora }}</td>
                     <td>{{ consulta.vacunatorio }}</td>
-                    <td>{{ consulta.estado }}</td>
+                    <td ng-change="cargarTabla()">{{ consulta.estado }}</td>
                     <td>
                       <button *ngIf="consulta.estado == 'Pendiente'" class="btn center red lighten-2" mat-button (click)="cancelarReserva(consulta.id)">
                         Cancelar

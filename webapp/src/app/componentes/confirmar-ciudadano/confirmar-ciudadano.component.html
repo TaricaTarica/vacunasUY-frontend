@@ -1,5 +1,5 @@
 <div class="container">
-    <div *ngIf="perfilCiudadano" class="horizontal-center">
+    <div *ngIf="user" class="horizontal-center">
       <h2>Confirmar perfil ciudadano</h2>
     </div>
     <div class="row">
@@ -13,20 +13,20 @@
             <input disabled value="{{ user.numero_documento }}" id="ci" type="text" class="validate">
             <span class="helper-text">Número de documento</span>
           </div>
-      </div>
+        </div>
         <div class="row">
             <div class="input-field col s6">
               <input disabled value="{{ user.email }}" id="email" type="text" class="validate">
               <span class="helper-text">Correo electrónico</span>
             </div>
             <div class="input-field col s6">
-              <input disabled value="{{ perfilCiudadano.fnac }}" id="fnac" type="text" class="validate">
+              <input disabled value="{{ user.fnac }}" id="fnac" type="text" class="validate">
               <span class="helper-text">Fecha de nacimiento</span>
             </div>
         </div>
         <div class="row">
           <div class="input-field col s12">
-            <input disabled value="{{ perfilCiudadano.poblacionObjetivo }}" id="pobj" type="text" class="validate">
+            <input disabled value="{{ user.poblacionObjetivo }}" id="pobj" type="text" class="validate">
             <span class="helper-text">Poblacion objetivo</span>
           </div>
         </div>

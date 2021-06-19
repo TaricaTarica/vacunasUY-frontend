@@ -4,6 +4,7 @@ import { Departamento } from 'src/app/interfaces/Departamento';
 import { Ubicacion } from 'src/app/interfaces/Ubicacion';
 import { Reserva } from 'src/app/interfaces/Reserva';
 import { ServicioReservasService } from 'src/app/servicios/servicioReservas/servicio-reservas.service';
+import { Usuario } from 'src/app/interfaces/Usuario';
 
 declare function toastMensaje(value: any): any;
 
@@ -26,26 +27,29 @@ export class AgendaComponent implements OnInit {
   departamentoSeleccionado: String
   ubicacionSeleccionada: string
 
+  public user: Usuario;
+
   ngOnInit(): void {
-    this.servicioReserva.getPlanes().subscribe(planes => this.planes = planes);
+    if (sessionStorage['userLogged']) {
+      this.user = JSON.parse(sessionStorage.getItem("userLogged")) as Usuario;
+      this.servicioReserva.getPlanes(this.user.poblacionObjetivo, this.user.fnac).subscribe(planes => this.planes = planes);
+    } 
     this.servicioReserva.getDepartamentos().subscribe(dptos => this.departamentos = dptos);
     this.ubicacionSeleccionada = '0';
     this.planSeleccionado = '0';
     this.departamentoSeleccionado = '0';
   }
   capturarPlan(){
-    console.log('dpto', this.departamentoSeleccionado);
-    console.log('plan', this.planSeleccionado);
-    console.log('ubi', this.ubicacionSeleccionada);
     this.reserva = {
-      'ci': '12345678',
+      'ci': this.user.numero_documento,
       'departamento': this.departamentoSeleccionado,
       'planVacunacion':  this.planSeleccionado,
       'ubicacion': this.ubicacionSeleccionada
     }
+    console.log("departamento: ", this.departamentoSeleccionado)
+    console.log("ubicacion: ", this.ubicacionSeleccionada)
     this.servicioReserva.crearReservar(this.reserva).subscribe(
-      data => this.mensaje = data,
-      error =>  toastMensaje(error.error.text) 
+      data => toastMensaje(data)
     );
   }
   capturarDepartamento(){
