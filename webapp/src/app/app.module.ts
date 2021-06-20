@@ -22,6 +22,8 @@ import { CommonModule } from '@angular/common';
 import { confirmarCancelarReserva, ConsultaReservaComponent } from './componentes/consulta-reserva/consulta-reserva.component';
 import { ConfirmarCiudadanoComponent } from './componentes/confirmar-ciudadano/confirmar-ciudadano.component';
 import { MonitorVacunacionComponent } from './componentes/monitor-vacunacion/monitor-vacunacion.component';
+import { NgApexchartsModule } from "ng-apexcharts";
+
 
 const rutas: Routes = [
   { path: '', component: HomeComponent },
@@ -29,7 +31,8 @@ const rutas: Routes = [
   { path: 'agendarse', component: AgendaComponent },
   { path: 'agendas-activas', component: AgendasComponent },
   { path: 'consulta-reserva', component: ConsultaReservaComponent },
-  { path: 'confirmar-ciudadano', component: ConfirmarCiudadanoComponent }
+  { path: 'confirmar-ciudadano', component: ConfirmarCiudadanoComponent },
+  { path: 'monitor-vacunacion', component: MonitorVacunacionComponent }
 ];
 
 @NgModule({
@@ -64,7 +67,8 @@ const rutas: Routes = [
     
   }),
     HttpClientModule,
-    BrowserAnimationsModule  
+    BrowserAnimationsModule,
+    NgApexchartsModule
   ],
   providers: [
     JwksValidationHandler,

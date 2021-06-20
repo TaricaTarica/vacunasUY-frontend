@@ -1,1 +1,65 @@
-<p>monitor-vacunacion works!</p>
+<div class="col s12">
+    <form class="row">  
+        <div class="input-field col s12">
+            <select [(ngModel)]="vacunaSeleccionada" [ngModelOptions]="{standalone: true}">
+                <option [value]="v" *ngFor="let v of vacunas">
+                {{v}}
+                </option>
+            </select>
+        </div>
+    </form>
+</div>
+<div class="container">
+    <div class="flex-container-horizontal">
+        <div class="flex-container-horizontal-item">
+            <div class="icon-circle">
+                <h1>3.225</h1>
+            </div>
+            <h1 class="vaccinated-persons">Vacunados hoy</h1>
+        </div>
+        <div class="flex-container-horizontal-item">
+            <div class="icon-circle">
+                <h1>3.225</h1>
+            </div>
+            <h1 class="vaccinated-persons">Agendas activas</h1>
+        </div>
+        <div class="flex-container-horizontal-item">
+            <div class="icon-circle">
+                <h1>3.225</h1>
+            </div>
+            <h1 class="vaccinated-persons">Reservas</h1>
+        </div>
+    </div>
+    <div id="line-chart">
+        <div class="vaccunated-card-header">
+            <p>Personas vacunadas por mes</p>
+        </div>
+        <apx-chart
+          [series]="lineChartOptions.series"
+          [chart]="lineChartOptions.chart"
+          [xaxis]="lineChartOptions.xaxis"
+          [dataLabels]="lineChartOptions.dataLabels"
+          [grid]="lineChartOptions.grid"
+          [stroke]="lineChartOptions.stroke"
+          [title]="lineChartOptions.title"
+        ></apx-chart>
+    </div>
+    <div id="column-chart">
+        <div class="vaccunated-card-header">
+            <p>Personas vacunadas por departamento</p>
+        </div>
+        <apx-chart
+        [series]="columnChartOptions.series"
+        [chart]="columnChartOptions.chart"
+        [dataLabels]="columnChartOptions.dataLabels"
+        [plotOptions]="columnChartOptions.plotOptions"
+        [yaxis]="columnChartOptions.yaxis"
+        [legend]="columnChartOptions.legend"
+        [fill]="columnChartOptions.fill"
+        [stroke]="columnChartOptions.stroke"
+        [tooltip]="columnChartOptions.tooltip"
+        [xaxis]="columnChartOptions.xaxis"
+        ></apx-chart>
+    </div>
+</div>
+
