@@ -16,6 +16,13 @@ import {
   ApexFill,
   ApexTooltip
 } from "ng-apexcharts";
+import { Vacuna } from 'src/app/interfaces/Vacuna';
+import { AgendaServiceService } from 'src/app/servicios/agenda-service.service';
+import { AgendasService } from 'src/app/servicios/servicioAgendas/agendas.service';
+import { RegistroVacunaServiceService } from 'src/app/servicios/servicioRegistroVacuna/registro-vacuna-service.service';
+import { ServicioReservasService } from 'src/app/servicios/servicioReservas/servicio-reservas.service';
+import { VacunaServiceService } from 'src/app/servicios/servicioVacuna/vacuna-service.service';
+import { VacunadorServiceService } from 'src/app/servicios/servicioVacunador/vacunador-service.service';
 
 export type LineChartOptions = {
   series: ApexAxisChartSeries;
@@ -50,15 +57,22 @@ export class MonitorVacunacionComponent implements OnInit {
   @ViewChild("column-chart") columnChart: ChartComponent;
   public lineChartOptions: Partial<LineChartOptions>;
   public columnChartOptions: Partial<ColumnChartOptions>;
-  vacunas: String[] = [];
-  vacunaSeleccionada: String
+  vacunas: Vacuna[] = [];
+  vacunaSeleccionada: number;
+  anoMesSeleccionado: number;
+  anoDepartamentoSeleccionado: number;
+  vacunadosHoy: any;
+  agendasActivas: any;
+  agendadosHoy: any;
+  
 
-  constructor() {
+  constructor(private vacunaService: VacunaServiceService, private registroVacunaService: RegistroVacunaServiceService,
+     private agendaService: AgendasService, private reservaService: ServicioReservasService) {
     this.lineChartOptions = {
       series: [
         {
           name: "Vacunados",
-          data: [10, 41, 35, 51, 49, 62, 69, 91, 148, 10, 99, 21]
+          data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
         }
       ],
       chart: {
@@ -106,7 +120,7 @@ export class MonitorVacunacionComponent implements OnInit {
         series: [
           {
             name: "Vacunados",
-            data: [35, 41, 36, 26, 45, 48, 52, 53, 41, 10, 29, 32, 32, 42, 21, 34, 21, 23, 34]
+            data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
           }
         ],
         chart: {
@@ -169,7 +183,166 @@ export class MonitorVacunacionComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.vacunas = ["covid", "vacuna3", "vacuna4", "vacuna5"]
+    this.vacunaService.getVacunas().subscribe(data => {
+      for(let v in data){
+        var vac: Vacuna = {
+          id: data[v].id,
+          nombre: data[v].nombre
+        }
+        this.vacunas.push(vac);
+      }
+      this.vacunaSeleccionada = this.vacunas[0].id;
+      this.anoMesSeleccionado = 2021;
+      this.anoDepartamentoSeleccionado = 2021;
+      this.capturarVacuna();
+    })
+    
   }
+
+  capturarVacuna(){
+    console.log("capturarVacuna: ",this.vacunaSeleccionada);
+    this.capturarAnoMes();
+    this.capturarAnoDepartamento();
+
+    this.registroVacunaService.getVacunadosHoy(this.vacunaSeleccionada).subscribe(data => {
+      this.vacunadosHoy = data;
+      this.agendaService.getAgendasActivasHoy(this.vacunaSeleccionada).subscribe(data => {
+        this.agendasActivas = data;
+        this.reservaService.getAgendadosHoy(this.vacunaSeleccionada).subscribe(data => {
+          this.agendadosHoy = data;
+        })
+      })
+    })
+  }
+
+  capturarAnoMes(){
+    console.log("Año x mes: ",this.anoMesSeleccionado);
+    console.log("capturarAnoMes: ",this.vacunaSeleccionada);
+
+    this.registroVacunaService.getVacunadosPorMes(this.vacunaSeleccionada, this.anoMesSeleccionado).subscribe(data =>{
+      this.lineChartOptions = {
+        series: [
+          {
+            name: "Vacunados",
+            data: data
+          }
+        ],
+        chart: {
+          height: 300,
+          type: "line",
+          zoom: {
+            enabled: false
+          }
+        },
+        dataLabels: {
+          enabled: false
+        },
+        stroke: {
+          curve: "straight"
+        },
+        title: {
+          text: "",
+          align: "left"
+        },
+        grid: {
+          row: {
+            colors: ["#f3f3f3", "transparent"],
+            opacity: 0.5
+          }
+        },
+        xaxis: {
+          categories: [
+            "Ene",
+            "Feb",
+            "Mar",
+            "Abr",
+            "May",
+            "Jun",
+            "Jul",
+            "Ago",
+            "Sep",
+            "Oct",
+            "Nov",
+            "Dic"
+          ]
+        }
+      };
+    })
+  }
+
+  capturarAnoDepartamento(){
+    console.log("Año x departamento: ",this.anoDepartamentoSeleccionado);
+    console.log("capturarAnoDepartamento: ",this.vacunaSeleccionada);
+
+    this.registroVacunaService.getVacunadosPorDepartamento(this.vacunaSeleccionada, this.anoDepartamentoSeleccionado).subscribe(data => {
+      console.log(data);
+      this.columnChartOptions = {
+        series: [
+          {
+            name: "Vacunados",
+            data: data
+          }
+        ],
+        chart: {
+          type: "bar",
+          height: 350
+        },
+        plotOptions: {
+          bar: {
+            horizontal: false,
+            columnWidth: "55%",
+          }
+        },
+        dataLabels: {
+          enabled: false
+        },
+        stroke: {
+          show: true,
+          width: 2,
+          colors: ["transparent"]
+        },
+        xaxis: {
+          categories: [
+            "ARTIGAS",
+            "CANELONES",
+            "CERRO LARGO",
+            "COLONIA",
+            "DURAZNO",
+            "FLORIDA",
+            "FLORES",
+            "LAVALLEJA",
+            "MALDONADO",
+            "MONTEVIDEO",
+            "PAYSANDÚ",
+            "RÍO NEGRO",
+            "ROCHA",
+            "RIVERA",
+            "SALTO",
+            "SAN JOSÉ",
+            "SORIANO",
+            "TACUAREMBÓ",
+            "TREINTA Y TRES"
+          ]
+        },
+        yaxis: {
+          title: {
+            text: "Personas vacunadas"
+          }
+        },
+        fill: {
+          opacity: 1
+        },
+        tooltip: {
+          y: {
+            formatter: function(val) {
+              return val + " vacunados";
+            }
+          }
+        }
+      };
+    })
+
+  }
+
 
 }

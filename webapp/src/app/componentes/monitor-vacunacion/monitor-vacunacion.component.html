@@ -1,38 +1,54 @@
+<div class="container">
 <div class="col s12">
     <form class="row">  
+        <label>Vacuna</label>
         <div class="input-field col s12">
-            <select [(ngModel)]="vacunaSeleccionada" [ngModelOptions]="{standalone: true}">
-                <option [value]="v" *ngFor="let v of vacunas">
-                {{v}}
+            <select [(ngModel)]="vacunaSeleccionada" (change)="capturarVacuna()" [ngModelOptions]="{standalone: true}">
+                <option [value]="v.id" *ngFor="let v of vacunas">
+                {{ v.nombre }}
                 </option>
             </select>
         </div>
     </form>
 </div>
+<p>Vacuna seleccionada: {{ vacunaSeleccionada }}</p>
+</div>
 <div class="container">
     <div class="flex-container-horizontal">
         <div class="flex-container-horizontal-item">
             <div class="icon-circle">
-                <h1>3.225</h1>
+                <h1>{{ vacunadosHoy }}</h1>
             </div>
             <h1 class="vaccinated-persons">Vacunados hoy</h1>
         </div>
         <div class="flex-container-horizontal-item">
             <div class="icon-circle">
-                <h1>3.225</h1>
+                <h1>{{ agendasActivas }}</h1>
             </div>
             <h1 class="vaccinated-persons">Agendas activas</h1>
         </div>
         <div class="flex-container-horizontal-item">
             <div class="icon-circle">
-                <h1>3.225</h1>
+                <h1>{{ agendadosHoy }}</h1>
             </div>
-            <h1 class="vaccinated-persons">Reservas</h1>
+            <h1 class="vaccinated-persons">Agendados hoy</h1>
         </div>
     </div>
     <div id="line-chart">
         <div class="vaccunated-card-header">
             <p>Personas vacunadas por mes</p>
+        </div>
+        <div class="col s11">
+            <label>Año</label>
+            <form class="row">  
+                <div class="input-field col s12">
+                    <select [(ngModel)]="anoMesSeleccionado" (change)="capturarAnoMes()" [ngModelOptions]="{standalone: true}">
+                        <option [value]="2021">2021</option>
+                        <option [value]="2020">2020</option>
+                        <option [value]="2019">2019</option>
+                    </select>
+                </div>
+            </form>
         </div>
         <apx-chart
           [series]="lineChartOptions.series"
@@ -47,6 +63,18 @@
     <div id="column-chart">
         <div class="vaccunated-card-header">
             <p>Personas vacunadas por departamento</p>
+        </div>
+        <div class="col s11">
+            <label>Año</label>
+            <form class="row">  
+                <div class="input-field col s12">
+                    <select [(ngModel)]="anoDepartamentoSeleccionado" (change)="capturarAnoDepartamento()" [ngModelOptions]="{standalone: true}">
+                        <option [value]="2021">2021</option>
+                        <option [value]="2020">2020</option>
+                        <option [value]="2019">2019</option>
+                    </select>
+                </div>
+            </form>
         </div>
         <apx-chart
         [series]="columnChartOptions.series"
