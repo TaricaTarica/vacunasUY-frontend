@@ -10,7 +10,7 @@ import { OAuthModule } from 'angular-oauth2-oidc';
 import { AgendaComponent } from './componentes/agenda/agenda.component';
 import { HomeComponent } from './componentes/home/home.component';
 
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderComponent } from './componentes/header/header.component';
 
@@ -18,11 +18,24 @@ import { JwksValidationHandler } from 'angular-oauth2-oidc-jwks';
 import { AgendasComponent, modalInfo } from './componentes/agendas/agendas.component';
 
 import { MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { confirmarCancelarReserva, ConsultaReservaComponent } from './componentes/consulta-reserva/consulta-reserva.component';
 import { ConfirmarCiudadanoComponent } from './componentes/confirmar-ciudadano/confirmar-ciudadano.component';
 import { MonitorVacunacionComponent } from './componentes/monitor-vacunacion/monitor-vacunacion.component';
 import { NgApexchartsModule } from "ng-apexcharts";
+import { SalaChatComponent } from './componentes/sala-chat/sala-chat.component';
+
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatCardModule } from '@angular/material/card';
+import { MatTableModule } from '@angular/material/table';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatSortModule } from '@angular/material/sort';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatSidenavModule } from '@angular/material/sidenav';
+
+
 
 
 const rutas: Routes = [
@@ -32,7 +45,8 @@ const rutas: Routes = [
   { path: 'agendas-activas', component: AgendasComponent },
   { path: 'consulta-reserva', component: ConsultaReservaComponent },
   { path: 'confirmar-ciudadano', component: ConfirmarCiudadanoComponent },
-  { path: 'monitor-vacunacion', component: MonitorVacunacionComponent }
+  { path: 'monitor-vacunacion', component: MonitorVacunacionComponent },
+  { path: 'sala-chat', component: SalaChatComponent }
 ];
 
 @NgModule({
@@ -48,7 +62,8 @@ const rutas: Routes = [
     confirmarCancelarReserva,
     ConsultaReservaComponent,
     ConfirmarCiudadanoComponent,
-    MonitorVacunacionComponent
+    MonitorVacunacionComponent,
+    SalaChatComponent,
   ],
   entryComponents: [
     modalInfo
@@ -64,15 +79,25 @@ const rutas: Routes = [
           allowedUrls: ['http://localhost/gubuy/'],
           sendAccessToken: true
       },
-    
   }),
     HttpClientModule,
     BrowserAnimationsModule,
-    NgApexchartsModule
+    NgApexchartsModule,
+    ReactiveFormsModule,
+    MatInputModule,
+    MatIconModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatTableModule,
+    MatProgressSpinnerModule,
+    MatSortModule,
+    MatSnackBarModule,
+    MatSidenavModule
   ],
   providers: [
     JwksValidationHandler,
-    {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}}
+    {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}},
+    DatePipe
   ],
   bootstrap: [AppComponent]
 })
