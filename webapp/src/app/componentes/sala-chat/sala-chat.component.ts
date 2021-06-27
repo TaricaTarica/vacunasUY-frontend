@@ -120,9 +120,11 @@ export class SalaChatComponent implements OnInit {
   }
 
   deleteUser(nickname: string){
-   firebase.database().ref('users/'+nickname).on('value', resp => {
-    resp.ref.remove();
-    });
+    firebase.database().ref('users/'+ this.nickname).set(null);
+   //firebase.database().ref('users/'+nickname).on('value', resp => {
+    //resp.ref.remove();
+    
+    //});
   }
 
   exitChat() {
