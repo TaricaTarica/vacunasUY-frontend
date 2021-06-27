@@ -11,6 +11,7 @@ export default firebase;
 import 'firebase/database';
 import { Usuario } from 'src/app/interfaces/Usuario';
 import { GubuyService } from 'src/app/servicios/gubuy.service';
+import { VacunadorServiceService } from 'src/app/servicios/servicioVacunador/vacunador-service.service';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -62,7 +63,7 @@ export class SalaChatComponent implements OnInit {
   refer = firebase.database().ref('users/');
 
   constructor(private router: Router,
-              private changeDetectorRefs: ChangeDetectorRef,
+              private vacunadorService: VacunadorServiceService,
               private route: ActivatedRoute,
               private formBuilder: FormBuilder,
               public datepipe: DatePipe) {
@@ -71,13 +72,7 @@ export class SalaChatComponent implements OnInit {
                   this.chats = snapshotToArray(resp);
                   setTimeout(() => this.scrolltop = this.chatcontent.nativeElement.scrollHeight, 500);
                 });
-
-                console.log("constructor!")
-                
                 firebase.database().ref('users/').on('value', resp => {
-                  //this.users.push(resp.val)
-                  //console.log("val: ", resp.val())
-                  //this.users = [];
                   console.log(snapshotToArray(resp))
                   this.users = snapshotToArray(resp);
                 });
@@ -87,10 +82,18 @@ export class SalaChatComponent implements OnInit {
   ngOnInit(): void {
     if (sessionStorage['userLogged']) {
       const user = JSON.parse(sessionStorage.getItem("userLogged")) as Usuario;
-      var split = user.nombre_completo.split(" "); 
-      this.nickname = split[0];
-      firebase.database().ref('users/'+ this.nickname).set({
-        'nickname': this.nickname 
+      this.vacunadorService.esVacunador(user.numero_documento).subscribe(data =>{
+        console.log(data)
+        if(data){
+          var split = user.nombre_completo.split(" "); 
+          this.nickname = split[0];
+            firebase.database().ref('users/'+ this.nickname).set({
+            'nickname': this.nickname 
+          });
+        }
+        else{
+          this.router.navigate(['/']);
+        }
       });
     } 
     this.chatForm = this.formBuilder.group({
@@ -121,10 +124,6 @@ export class SalaChatComponent implements OnInit {
 
   deleteUser(nickname: string){
     firebase.database().ref('users/'+ this.nickname).set(null);
-   //firebase.database().ref('users/'+nickname).on('value', resp => {
-    //resp.ref.remove();
-    
-    //});
   }
 
   exitChat() {
