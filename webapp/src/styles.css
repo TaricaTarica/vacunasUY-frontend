@@ -9,3 +9,6 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .container{
     margin: 4rem auto !important;
 }
+.mat-form-field-subscript-wrapper.ng-tns-c100-1 {
+    display: none;
+}

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { GubuyService } from './servicios/gubuy.service';
-import firebase from 'firebase/app'
+import * as firebase from 'firebase/app';
+export default firebase;
 
 const config = {
   apiKey: "AIzaSyBD4Y-vu5sPVpyPagV1-DBVJ5dvjiDb0i0",

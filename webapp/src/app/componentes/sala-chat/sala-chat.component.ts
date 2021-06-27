@@ -1,10 +1,13 @@
 import { DatePipe } from '@angular/common';
 import { variable } from '@angular/compiler/src/output/output_ast';
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { chainedInstruction } from '@angular/compiler/src/render3/view/util';
+import { ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, FormGroupDirective, NgForm, Validators } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import firebase from 'firebase/app'
+//import firebase from 'firebase/app'
+import * as firebase from 'firebase/app';
+export default firebase;
 import 'firebase/database';
 import { Usuario } from 'src/app/interfaces/Usuario';
 import { GubuyService } from 'src/app/servicios/gubuy.service';
@@ -20,9 +23,17 @@ export const snapshotToArray = (snapshot: any) => {
   const returnArr = [];
 
   snapshot.forEach((childSnapshot: any) => {
-      const item = childSnapshot.val();
-      item.key = childSnapshot.key;
-      returnArr.push(item);
+        if(childSnapshot.val().message != null){
+          const item = childSnapshot.val();
+          item.key = childSnapshot.key;
+          returnArr.push(item);
+        }
+        else{
+          const item = childSnapshot.val();
+          //item.key = childSnapshot.key;
+          //const item = { key: childSnapshot.key, value: snapshot.val() }
+          returnArr.push(item);
+        }
   });
 
   return returnArr;
@@ -48,7 +59,10 @@ export class SalaChatComponent implements OnInit {
 
   inChat = false;
 
+  refer = firebase.database().ref('users/');
+
   constructor(private router: Router,
+              private changeDetectorRefs: ChangeDetectorRef,
               private route: ActivatedRoute,
               private formBuilder: FormBuilder,
               public datepipe: DatePipe) {
@@ -57,6 +71,17 @@ export class SalaChatComponent implements OnInit {
                   this.chats = snapshotToArray(resp);
                   setTimeout(() => this.scrolltop = this.chatcontent.nativeElement.scrollHeight, 500);
                 });
+
+                console.log("constructor!")
+                
+                firebase.database().ref('users/').on('value', resp => {
+                  //this.users.push(resp.val)
+                  //console.log("val: ", resp.val())
+                  //this.users = [];
+                  console.log(snapshotToArray(resp))
+                  this.users = snapshotToArray(resp);
+                });
+                
               }
 
   ngOnInit(): void {
@@ -64,20 +89,17 @@ export class SalaChatComponent implements OnInit {
       const user = JSON.parse(sessionStorage.getItem("userLogged")) as Usuario;
       var split = user.nombre_completo.split(" "); 
       this.nickname = split[0];
-      console.log(this.nickname)
+      firebase.database().ref('users/'+ this.nickname).set({
+        'nickname': this.nickname 
+      });
     } 
-    this.users.push(this.nickname);
     this.chatForm = this.formBuilder.group({
       'message' : [null, Validators.required]
     });
-    
-    const newRoom = firebase.database().ref('rooms/').push();
-    newRoom.set({ 'roomname' : 'vacunasuy' });
   }
 
   ngOnDestroy() {
-    this.desconectar(this.nickname);
-    console.log("chau")
+    this.desconectar(this.nickname)
   }
 
   onFormSubmit(form: any) {
@@ -91,9 +113,16 @@ export class SalaChatComponent implements OnInit {
       'message' : [null, Validators.required]
     });
   }
+  desconectar(nickname: string) {
+    this.exitChat();
+    this.deleteUser(nickname)
+    //this.users = this.users.filter(item => item.nickname !== nickname);     
+  }
 
-  desconectar(nickname: String): void{
-    this.users = this.users.filter(item => item != nickname);
+  deleteUser(nickname: string){
+   firebase.database().ref('users/'+nickname).on('value', resp => {
+    resp.ref.remove();
+    });
   }
 
   exitChat() {
@@ -105,5 +134,4 @@ export class SalaChatComponent implements OnInit {
     const newMessage = firebase.database().ref('chats/').push();
     newMessage.set(chat);
   }
-
 }

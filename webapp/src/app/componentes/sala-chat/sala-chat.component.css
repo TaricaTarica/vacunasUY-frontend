@@ -27,7 +27,7 @@
   }
   
   footer.sticky-footer {
-    position: fixed;
+    /*position: fixed;*/
     bottom: 0;
     left: 0;
     width: 100%;
@@ -37,7 +37,7 @@
   }
   
   .message-form {
-    margin-left: 200px;
+    /*margin-left: 200px; */
   }
   
   .message-form-field {
@@ -173,4 +173,25 @@
   }
   .mat-drawer-container {
     color: #000;
+  }
+  :host ::ng-deep .mat-form-field-underline span {
+    background: #fff !important;
+  }
+  :host ::ng-deep .mat-form-field-infix input{
+    margin: 0px;
+  }
+  .mat-form-field-subscript-wrapper.ng-tns-c100-1 {
+    display: none;
+  }
+  ::ng-deep .mat-drawer{
+    background-color: #fff;
+  }
+  .online{
+    color: #000;
+    border-bottom: 1px solid #9e9e9e;
+    font-size: 12px;
+  }
+
+  ::ng-deep mat-card.mat-card.mat-focus-indicator.users-card.ng-star-inserted{
+    background-color: #9e9e9e;
   }
