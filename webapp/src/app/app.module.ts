@@ -35,6 +35,10 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { AgendasAsignadasComponent, modalInfoVacunador } from './componentes/agendas-asignadas/agendas-asignadas.component';
+import { CertificadoVacunacionComponent } from './componentes/certificado-vacunacion/certificado-vacunacion.component';
+
+import { ShareButtonsModule } from 'ngx-sharebuttons/buttons';
+import { ShareIconsModule } from 'ngx-sharebuttons/icons';
 
 
 
@@ -48,7 +52,8 @@ const rutas: Routes = [
   { path: 'confirmar-ciudadano', component: ConfirmarCiudadanoComponent },
   { path: 'monitor-vacunacion', component: MonitorVacunacionComponent },
   { path: 'sala-chat', component: SalaChatComponent },
-  { path: 'agendas-asignadas', component: AgendasAsignadasComponent }
+  { path: 'agendas-asignadas', component: AgendasAsignadasComponent },
+  { path: 'certificado-vacunacion', component: CertificadoVacunacionComponent },
 ];
 
 @NgModule({
@@ -68,6 +73,7 @@ const rutas: Routes = [
     MonitorVacunacionComponent,
     SalaChatComponent,
     AgendasAsignadasComponent,
+    CertificadoVacunacionComponent
   ],
   entryComponents: [
     modalInfo
@@ -96,7 +102,11 @@ const rutas: Routes = [
     MatProgressSpinnerModule,
     MatSortModule,
     MatSnackBarModule,
-    MatSidenavModule
+    MatSidenavModule,
+    ShareButtonsModule.withConfig({
+      debug: true
+    }),
+    ShareIconsModule
   ],
   providers: [
     JwksValidationHandler,

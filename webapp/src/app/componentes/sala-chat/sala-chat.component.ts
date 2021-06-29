@@ -5,9 +5,9 @@ import { ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild } from '@an
 import { FormBuilder, FormControl, FormGroup, FormGroupDirective, NgForm, Validators } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import firebase from 'firebase/app'
-//import * as firebase from 'firebase/app';
-//export default firebase;
+//import firebase from 'firebase/app'
+import * as firebase from 'firebase/app';
+export default firebase;
 import 'firebase/database';
 import { Usuario } from 'src/app/interfaces/Usuario';
 import { GubuyService } from 'src/app/servicios/gubuy.service';
