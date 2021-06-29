@@ -1,0 +1,40 @@
+<div id="agendas-asignadas" class="container">
+    <div class="left">
+        <div class="input-field col s12">
+            <input disabled value="{{ user.numero_documento }} - {{ user.nombre_completo }}" id="ci" type="text" class="validate">
+            <span class="helper-text" >Vacunador/a</span>
+        </div>
+    </div>
+      <table *ngIf="agendas" class="highlight responsive-table">
+          <thead>
+            <tr>
+                <th>Código</th>
+                <th>Fecha inicio</th>
+                <th>Fecha fin</th>
+                <th>Hora inicio</th>
+                <th>Hora fin</th>
+                <th>Vacunatorio</th>
+                <th>Fecha asignada</th>
+                <th>Puesto</th>
+                <th></th>
+            </tr>
+          </thead>
+          <tbody *ngFor="let agenda of agendas">
+            <tr>
+              <td>{{ agenda.id }}</td>
+              <td>{{ agenda.inicio }}</td>
+              <td>{{ agenda.fin }}</td>
+              <td>{{ agenda.horaInicio }}</td>
+              <td>{{ agenda.horaFin }}</td>
+              <td>{{ agenda.dtVacunatorio.nombre }}</td>
+              <td>Fecha asignada</td>
+              <td>Puesto</td>
+              <td>
+                <button class="btn center grey" mat-button (click)="masInfo(agenda.listDtPlanVacunacion)">
+                  Ver Planes
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+  </div>

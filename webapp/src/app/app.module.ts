@@ -34,6 +34,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSortModule } from '@angular/material/sort';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { AgendasAsignadasComponent, modalInfoVacunador } from './componentes/agendas-asignadas/agendas-asignadas.component';
 
 
 
@@ -46,7 +47,8 @@ const rutas: Routes = [
   { path: 'consulta-reserva', component: ConsultaReservaComponent },
   { path: 'confirmar-ciudadano', component: ConfirmarCiudadanoComponent },
   { path: 'monitor-vacunacion', component: MonitorVacunacionComponent },
-  { path: 'sala-chat', component: SalaChatComponent }
+  { path: 'sala-chat', component: SalaChatComponent },
+  { path: 'agendas-asignadas', component: AgendasAsignadasComponent }
 ];
 
 @NgModule({
@@ -59,11 +61,13 @@ const rutas: Routes = [
     HeaderComponent,
     AgendasComponent,
     modalInfo,
+    modalInfoVacunador,
     confirmarCancelarReserva,
     ConsultaReservaComponent,
     ConfirmarCiudadanoComponent,
     MonitorVacunacionComponent,
     SalaChatComponent,
+    AgendasAsignadasComponent,
   ],
   entryComponents: [
     modalInfo

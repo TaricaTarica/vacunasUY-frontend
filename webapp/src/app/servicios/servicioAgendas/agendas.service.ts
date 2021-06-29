@@ -18,4 +18,9 @@ export class AgendasService {
   getAgendasActivasHoy(id: any){
     return this.http.get<any>(this.url_api+"agendas/count-activas/" + id);
   }
+
+  getAgendasVacunador(ci: any){
+    return this.http.get<Agenda[]>(this.url_api + "agendas/agendas-vacunador/" + ci );
+  }
+
 }
