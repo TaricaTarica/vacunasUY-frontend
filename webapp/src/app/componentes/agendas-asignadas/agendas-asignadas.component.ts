@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Agenda } from 'src/app/interfaces/Agenda';
 import { Usuario } from 'src/app/interfaces/Usuario';
 import { AgendasService } from 'src/app/servicios/servicioAgendas/agendas.service';
+import { VacunadorServiceService } from 'src/app/servicios/servicioVacunador/vacunador-service.service';
 import { Planes } from '../agendas/agendas.component';
 
 @Component({
@@ -15,8 +16,13 @@ export class AgendasAsignadasComponent implements OnInit {
 
   user: Usuario;
   agendas: Array<Agenda> 
+  puesto: any
 
-  constructor(private router: Router, private agendasService: AgendasService, public dialog: MatDialog) { }
+  constructor(
+    private router: Router,
+    private agendasService: AgendasService,
+    public dialog: MatDialog,
+    private vacunadorService: VacunadorServiceService){ }
 
   ngOnInit(): void {
     if (sessionStorage['userLogged']) {
@@ -40,6 +46,11 @@ export class AgendasAsignadasComponent implements OnInit {
         data: planes
       }
       
+    });
+  }
+  getPuesto(ci: any, codigo: any): any{
+    this.vacunadorService.puestoVacunador(ci, codigo).subscribe(data => {
+      return data;
     });
   }
 

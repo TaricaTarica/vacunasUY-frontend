@@ -11,7 +11,11 @@ export class VacunadorServiceService {
   constructor(private http: HttpClient) { }
 
   esVacunador(ci: any){
-    return this.http.get<any>(this.url_api + "vacunador/es-vacunador/" + ci)
+    return this.http.get<any>(this.url_api + "vacunador/es-vacunador/" + ci);
+  }
+
+  puestoVacunador(ci: any, codigo: any){
+    return this.http.get<any>(this.url_api + "vacunador/puesto-vacunador/" + ci + "/" + codigo);
   }
   
 }

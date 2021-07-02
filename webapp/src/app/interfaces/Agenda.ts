@@ -6,7 +6,8 @@ export interface Agenda {
     horaInicio: String,
     horaFin: String,
     dtVacunatorio: {
-        nombre: String
+        nombre: String,
+        codigo: String
     }
     listDtPlanVacunacion:[
         {

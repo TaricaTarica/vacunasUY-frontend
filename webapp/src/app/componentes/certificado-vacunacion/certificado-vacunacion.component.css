@@ -1,0 +1,46 @@
+.certificado-titulo-container{
+    display: flex;
+    padding: 2rem;
+    background-color: #044597;
+    align-items: center;
+    justify-content: space-between;
+}
+.certificado-titulo-container h1{
+    color: #fff;
+    margin: 0px;
+}
+.certificado-titulo-container img{
+    height: 5rem;
+}
+.certificado-personal-info,
+.certificado-enfermedad,
+.certificado-datos-vacunacion{
+    padding: 1rem 1rem;
+    margin: 2rem 0;
+    border: 1px solid #eeeeee ;
+}
+.certificado-personal-info p,
+.certificado-enfermedad p,
+.certificado-datos-vacunacion p{
+    margin: .2rem 0;
+    font-weight: 700;
+}
+.certificado-personal-info span,
+.certificado-datos-vacunacion span{
+    font-size: 17px;
+    margin-bottom: 2rem;
+}
+.certificado-enfermedad{
+    justify-content: space-between;
+    display: flex;
+}
+.certificado-datos-vacunacion{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+}
+
+::ng-deep button{
+    background-color: transparent;
+    border: 0px;
+}
