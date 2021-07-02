@@ -39,6 +39,7 @@ import { CertificadoVacunacionComponent } from './componentes/certificado-vacuna
 
 import { ShareButtonsModule } from 'ngx-sharebuttons/buttons';
 import { ShareIconsModule } from 'ngx-sharebuttons/icons';
+import { ListaCertificadosComponent } from './componentes/lista-certificados/lista-certificados.component';
 
 
 
@@ -54,6 +55,7 @@ const rutas: Routes = [
   { path: 'sala-chat', component: SalaChatComponent },
   { path: 'agendas-asignadas', component: AgendasAsignadasComponent },
   { path: 'certificado-vacunacion', component: CertificadoVacunacionComponent },
+  { path: 'lista-certificados', component: ListaCertificadosComponent },
 ];
 
 @NgModule({
@@ -73,7 +75,8 @@ const rutas: Routes = [
     MonitorVacunacionComponent,
     SalaChatComponent,
     AgendasAsignadasComponent,
-    CertificadoVacunacionComponent
+    CertificadoVacunacionComponent,
+    ListaCertificadosComponent
   ],
   entryComponents: [
     modalInfo

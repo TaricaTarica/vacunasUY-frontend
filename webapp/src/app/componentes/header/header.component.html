@@ -12,6 +12,7 @@
     <div class="nav-wrapper">
         <ul id="nav-mobile" class="right hide-on-med-and-down">
         <li *ngIf="user && !user.vacunador"><a routerLink="/agendarse">Gestión Agenda</a></li>
+        <li *ngIf="user && !user.vacunador"><a routerLink="/lista-certificados">Mis certificados</a></li>
         <li *ngIf="user && user.vacunador"><a routerLink="/sala-chat">Chat</a></li>
         <li *ngIf="user && user.vacunador"><a routerLink="/agendas-asignadas">Agendas asignadas</a></li>
         <li><a routerLink="/agendas-activas">Próximas agendas</a></li>

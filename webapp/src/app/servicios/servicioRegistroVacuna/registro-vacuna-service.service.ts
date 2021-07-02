@@ -21,4 +21,7 @@ export class RegistroVacunaServiceService {
   getVacunadosPorDepartamento(id: any, ano: any){
     return this.http.get<any>(this.url_api + "/count-vacunados-departamento/" + id + "/" + ano)
   }
+  getCertificados(ci: any){
+    return this.http.get<any>(this.url_api + "/ciudadano/" + ci);
+  }
 }

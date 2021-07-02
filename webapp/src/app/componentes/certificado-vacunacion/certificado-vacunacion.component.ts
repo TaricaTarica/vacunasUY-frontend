@@ -10,6 +10,7 @@ export class CertificadoVacunacionComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    
   }
 
 }

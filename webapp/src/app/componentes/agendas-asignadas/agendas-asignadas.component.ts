@@ -48,13 +48,10 @@ export class AgendasAsignadasComponent implements OnInit {
       
     });
   }
-  getPuesto(ci: any, codigo: any): any{
-    this.vacunadorService.puestoVacunador(ci, codigo).subscribe(data => {
-      return data;
-    });
-  }
 
 }
+
+
 @Component({
   selector: 'modalInfoVacunador',
   templateUrl: '../agendas/modalInfo.html'

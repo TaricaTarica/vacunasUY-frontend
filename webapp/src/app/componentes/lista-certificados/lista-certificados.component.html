@@ -1,0 +1,30 @@
+<div id="lista-certificados" class="container">
+    <div class="left">
+        <div class="input-field col s12">
+            <input disabled value="{{ user.numero_documento }} - {{ user.nombre_completo }}" id="ci" type="text" class="validate">
+            <span class="helper-text" >Ciudadano</span>
+        </div>
+    </div>
+      <table *ngIf="certificados" class="highlight responsive-table">
+          <thead>
+            <tr>
+                <th>Fecha vacunación</th>
+                <th>Nombre vacuna</th>
+                <th>Enfermedad</th>
+                <th></th>
+            </tr>
+          </thead>
+          <tbody *ngFor="let certificado of certificados">
+            <tr>
+              <td>{{ certificado.fechaVacuna }}</td>
+              <td>{{ certificado.nombreVacuna }}</td>
+              <td>{{ certificado.nombreEnfermedad }}</td>
+              <td>
+                <button class="btn center grey">
+                  Ver Certificado
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+  </div>
