@@ -16,7 +16,7 @@ export class AgendasAsignadasComponent implements OnInit {
 
   user: Usuario;
   agendas: Array<Agenda> 
-  puesto: any
+  puesto: any;
 
   constructor(
     private router: Router,
@@ -33,6 +33,11 @@ export class AgendasAsignadasComponent implements OnInit {
       else{
         this.agendasService.getAgendasVacunador(this.user.numero_documento).subscribe(data => {
           this.agendas = data;
+          this.vacunadorService.puestoVacunador(
+            this.user.numero_documento, this.agendas[0].dtVacunatorio.codigo
+          ).subscribe(data =>{
+            this.puesto = data;
+          });
         });
       }
     }
@@ -45,7 +50,6 @@ export class AgendasAsignadasComponent implements OnInit {
       data: {
         data: planes
       }
-      
     });
   }
 
