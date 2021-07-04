@@ -14,7 +14,7 @@ select{
 .icon-circle{
     border-radius: 50%;
     color: #fff;
-    background-color: #009688;
+    background-color: #044160;
     width: 150px;
     height: 150px;
     display: flex;
@@ -34,7 +34,7 @@ select{
     justify-content: center;
 }
 .footer{
-    background-color: #009688;
+    background-color: #044160 !important;
     color: #fff;
     height: 8rem;
 }
@@ -51,7 +51,7 @@ select{
     padding: 0rem 3rem 3rem 3rem;
 }
 .head-center h1{
-    color: #009688;
+    color: #044160;
     font-size: 2.75em !important;
     font-weight: 600 !important;
     margin: 0.2rem !important;
@@ -63,14 +63,14 @@ select{
 }
 .top-login a{
     padding: .5em;
-    color: #009688;
+    color: #044160;
     font-size: 1em;
 }
 .menu-principal{
     display: flex;
     justify-content: space-around;
     padding: 0 35px;
-    background-color: #009688;
+    background-color: #044160;
 }
 .horizontal-center h2{
     font-size: 2rem !important;
@@ -78,4 +78,26 @@ select{
 .vertical-center{
     display: flex;
     align-items: center;
+}
+.text-principal{
+    color: #044160 !important;
+}
+.secondary-btn{
+    color: #044160 !important;
+    border: 1px solid #044160 !important;
+    background-color: #fff !important;
+}
+.secondary-btn:hover{
+    color: #fff !important;
+    background-color: #044160 !important;
+}
+.badge{
+    border-radius: 17px;
+}
+.collection .collection-item.active {
+    color: #fff !important;
+    background-color: #044160 !important;
+}
+.collection a.collection-item{
+    color: #044160 !important;
 }

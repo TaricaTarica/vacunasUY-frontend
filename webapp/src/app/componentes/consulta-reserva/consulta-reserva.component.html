@@ -29,7 +29,15 @@
                     <td>{{ consulta.fecha }}</td>
                     <td>{{ consulta.hora }}</td>
                     <td>{{ consulta.vacunatorio }}</td>
-                    <td ng-change="cargarTabla()">{{ consulta.estado }}</td>
+                    <td ng-change="cargarTabla()" *ngIf="consulta.estado == 'Pendiente'" class="badge">
+                      <span class="badge amber lighten-2  white-text">{{ consulta.estado }}</span>
+                    </td>
+                    <td ng-change="cargarTabla()" *ngIf="consulta.estado == 'Cancelada'">
+                      <span class="badge red lighten-1 white-text">{{ consulta.estado }}</span>
+                    </td>
+                    <td ng-change="cargarTabla()" *ngIf="consulta.estado == 'Agendado'">
+                     <span class="badge green lighten-1 white-text">{{ consulta.estado }}</span>
+                    </td>
                     <td>
                       <button *ngIf="consulta.estado == 'Pendiente'" class="btn center red lighten-2" mat-button (click)="cancelarReserva(consulta.id)">
                         Cancelar

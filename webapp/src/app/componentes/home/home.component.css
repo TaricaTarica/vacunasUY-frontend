@@ -1,0 +1,61 @@
+.card-action a,
+.card-icon i{
+    color: #044160 !important;
+}
+.card-icon{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    background-color: #044160;
+    border-radius: 50%;
+}
+.card-icon i{
+    font-size: 2rem;
+    color: white !important;
+}
+.flex-card{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.home-banner{
+    /*background-color: #E5F6FF;*/
+    background-image: url('https://images.pexels.com/photos/3985170/pexels-photo-3985170.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100%;
+    height: 30rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    position: relative;
+}
+.home-banner h1{
+    font-size: 3rem;
+    color: #fff;
+    text-transform: uppercase;
+    z-index: 999;
+}
+.home-banner a{
+    border: 2px solid #fff;
+    padding: .8rem;
+    z-index: 999;
+    color: #fff;
+    text-transform: uppercase;
+    margin-top: 1rem;
+    font-weight: 500;
+}
+.home-banner a:hover{
+    color: #000;
+    background-color: white;
+}
+.banner-hover{
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.4);
+    width: 100%;
+    z-index: 0;
+    height: 100%;
+}
