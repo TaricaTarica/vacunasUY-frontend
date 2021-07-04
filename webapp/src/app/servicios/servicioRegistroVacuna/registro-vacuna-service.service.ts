@@ -24,4 +24,7 @@ export class RegistroVacunaServiceService {
   getCertificados(ci: any){
     return this.http.get<any>(this.url_api + "/ciudadano/" + ci);
   }
+  getCertificadoReserva(id: any){
+    return this.http.get<any>(this.url_api + "/obtener-certificado-reserva/" + id)
+  }
 }

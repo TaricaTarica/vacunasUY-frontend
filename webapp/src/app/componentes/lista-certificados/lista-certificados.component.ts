@@ -25,13 +25,15 @@ export class ListaCertificadosComponent implements OnInit {
       else{
         this.registroVacunaService.getCertificados(this.user.numero_documento).subscribe(data => {
           this.certificados = data;
-          console.log(data)
         });
       }
     }
     else{
       this.router.navigate(['/']);
     } 
+  }
+  verCertificado(idReserva: any){
+    this.router.navigate(['/certificado-vacunacion/' + idReserva]);
   }
 
 }

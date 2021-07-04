@@ -1,5 +1,7 @@
 export interface Certificado {
-    id: any
+    cedula: any,
+    nombreCompleto: any,
+    fechaNacimiento: any,
     fechaVacuna: String,
     idVacuna: any,
     nombreVacuna: String,
@@ -8,5 +10,6 @@ export interface Certificado {
     cantDosis: any,
     periodoInmunidad: any,
     idEnfermedad: any,
-    nombreEnfermedad: any
+    nombreEnfermedad: any,
+    idReserva: any
 }

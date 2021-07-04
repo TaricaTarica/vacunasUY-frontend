@@ -54,7 +54,7 @@ const rutas: Routes = [
   { path: 'monitor-vacunacion', component: MonitorVacunacionComponent },
   { path: 'sala-chat', component: SalaChatComponent },
   { path: 'agendas-asignadas', component: AgendasAsignadasComponent },
-  { path: 'certificado-vacunacion', component: CertificadoVacunacionComponent },
+  { path: 'certificado-vacunacion/:id', component: CertificadoVacunacionComponent },
   { path: 'lista-certificados', component: ListaCertificadosComponent },
 ];
 
