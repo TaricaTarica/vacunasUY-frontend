@@ -200,7 +200,6 @@ export class MonitorVacunacionComponent implements OnInit {
   }
 
   capturarVacuna(){
-    console.log("capturarVacuna: ",this.vacunaSeleccionada);
     this.capturarAnoMes();
     this.capturarAnoDepartamento();
 
@@ -216,9 +215,6 @@ export class MonitorVacunacionComponent implements OnInit {
   }
 
   capturarAnoMes(){
-    console.log("Año x mes: ",this.anoMesSeleccionado);
-    console.log("capturarAnoMes: ",this.vacunaSeleccionada);
-
     this.registroVacunaService.getVacunadosPorMes(this.vacunaSeleccionada, this.anoMesSeleccionado).subscribe(data =>{
       this.lineChartOptions = {
         series: [
@@ -271,11 +267,7 @@ export class MonitorVacunacionComponent implements OnInit {
   }
 
   capturarAnoDepartamento(){
-    console.log("Año x departamento: ",this.anoDepartamentoSeleccionado);
-    console.log("capturarAnoDepartamento: ",this.vacunaSeleccionada);
-
     this.registroVacunaService.getVacunadosPorDepartamento(this.vacunaSeleccionada, this.anoDepartamentoSeleccionado).subscribe(data => {
-      console.log(data);
       this.columnChartOptions = {
         series: [
           {

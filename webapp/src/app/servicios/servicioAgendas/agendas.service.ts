@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { CompCent } from '../../globals';
 import { Agenda } from 'src/app/interfaces/Agenda';
 
 @Injectable({
@@ -7,8 +8,8 @@ import { Agenda } from 'src/app/interfaces/Agenda';
 })
 export class AgendasService {
 
-  url_api:string = "http://localhost:8080/comp-cent-web/rest/";
-
+  url_api:string = CompCent.url;
+  
   constructor(private http: HttpClient) { }
 
   getAgendas(){

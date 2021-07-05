@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { CompCent } from '../globals';
 import { Departamento } from '../interfaces/Departamento';
 import { PlanVacunacion } from '../interfaces/PlanVacunacion'
 import { Reserva } from '../interfaces/Reserva';
@@ -12,7 +13,7 @@ import { Ubicacion } from '../interfaces/Ubicacion';
 export class AgendaServiceService {
 
 
-  url_api:string = "http://localhost:8080/comp-cent-web/rest/";
+  url_api:string = CompCent.url;
 
   constructor(private http: HttpClient) { }
 

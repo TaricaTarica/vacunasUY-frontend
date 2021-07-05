@@ -1,12 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { CompCent } from '../../globals';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RegistroVacunaServiceService {
 
-  url_api:string = "http://localhost:8080/comp-cent-web/rest/certificado";
+  url_api:string =  CompCent.url + "certificado";
 
   constructor(private http: HttpClient) { }
 

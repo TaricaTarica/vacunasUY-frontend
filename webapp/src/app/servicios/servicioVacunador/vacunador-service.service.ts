@@ -1,12 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { CompCent } from '../../globals';
 
 @Injectable({
   providedIn: 'root'
 })
 export class VacunadorServiceService {
 
-  url_api:string = "http://localhost:8080/comp-cent-web/rest/";
+  url_api:string = CompCent.url;
 
   constructor(private http: HttpClient) { }
 

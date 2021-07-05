@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { CompCent } from '../../globals';
 import { Usuario } from 'src/app/interfaces/Usuario';
 
 @Injectable({
@@ -9,7 +10,7 @@ export class CiudadanoServiceService {
 
   constructor(private http: HttpClient) { }
 
-  url_api:string = "http://localhost:8080/comp-cent-web/rest/";
+  url_api:string = CompCent.url;
 
   existeCiudadano(ci: any){
     return this.http.get<any>(this.url_api + "ciudadano/existe-ciudadano/" + ci);

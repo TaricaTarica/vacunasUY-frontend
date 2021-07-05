@@ -1,18 +1,19 @@
 import { AuthConfig } from 'angular-oauth2-oidc';
+import { CompCent } from './globals';
  
 export const authConfig: AuthConfig = {
 
   issuer: 'https://auth-testing.iduruguay.gub.uy',
 
-  redirectUri: 'http://localhost',
+  redirectUri: CompCent.domino,
 
-  loginUrl: 'http://localhost/gubuy/authorize',
+  loginUrl: CompCent.domino + '/gubuy/authorize',
 
-  logoutUrl: 'http://localhost/gubuy/logout',
+  logoutUrl: CompCent.domino + '/gubuy/logout',
 
-  tokenEndpoint: 'http://localhost/gubuy/token',
+  tokenEndpoint: CompCent.domino +'/gubuy/token',
 
-  userinfoEndpoint: 'http://localhost/gubuy/userinfo',
+  userinfoEndpoint: CompCent.domino + '/gubuy/userinfo',
 
   clientId: '890192',
   

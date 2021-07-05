@@ -40,9 +40,7 @@ import { CertificadoVacunacionComponent } from './componentes/certificado-vacuna
 import { ShareButtonsModule } from 'ngx-sharebuttons/buttons';
 import { ShareIconsModule } from 'ngx-sharebuttons/icons';
 import { ListaCertificadosComponent } from './componentes/lista-certificados/lista-certificados.component';
-
-
-
+import { CompCent } from './globals';
 
 const rutas: Routes = [
   { path: '', component: HomeComponent },
@@ -57,6 +55,7 @@ const rutas: Routes = [
   { path: 'certificado-vacunacion/:id', component: CertificadoVacunacionComponent },
   { path: 'lista-certificados', component: ListaCertificadosComponent },
 ];
+
 
 @NgModule({
   declarations: [
@@ -89,7 +88,7 @@ const rutas: Routes = [
     RouterModule.forRoot(rutas),
     OAuthModule.forRoot({
       resourceServer: {
-          allowedUrls: ['http://localhost/gubuy/'],
+          allowedUrls: [ CompCent.domino + '/gubuy/'],
           sendAccessToken: true
       },
   }),

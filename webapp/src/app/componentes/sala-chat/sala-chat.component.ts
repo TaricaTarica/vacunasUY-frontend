@@ -73,7 +73,6 @@ export class SalaChatComponent implements OnInit {
                   setTimeout(() => this.scrolltop = this.chatcontent.nativeElement.scrollHeight, 500);
                 });
                 firebase.database().ref('users/').on('value', resp => {
-                  console.log(snapshotToArray(resp))
                   this.users = snapshotToArray(resp);
                 });
                 
@@ -83,7 +82,6 @@ export class SalaChatComponent implements OnInit {
     if (sessionStorage['userLogged']) {
       const user = JSON.parse(sessionStorage.getItem("userLogged")) as Usuario;
       this.vacunadorService.esVacunador(user.numero_documento).subscribe(data =>{
-        console.log(data)
         if(data){
           var split = user.nombre_completo.split(" "); 
           this.nickname = split[0];
