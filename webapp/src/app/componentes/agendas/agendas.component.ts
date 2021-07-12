@@ -31,6 +31,7 @@ export class AgendasComponent implements OnInit {
   constructor(private serviceAgenda: AgendasService, public dialog: MatDialog) { }
 
   agendas: Array<Agenda> 
+  p: number = 1;
 
   ngOnInit(): void {
     this.serviceAgenda.getAgendas().subscribe(agenda => this.agendas = agenda);

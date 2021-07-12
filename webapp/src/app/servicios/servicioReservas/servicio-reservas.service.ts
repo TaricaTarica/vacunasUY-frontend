@@ -45,6 +45,6 @@ export class ServicioReservasService {
   }
 
   getAgendadosHoy(id: any){
-    return this.http.get<any>(this.url_api+"reserva/count-agendados/" +id)
+    return this.http.get<any>(this.url_api + `reserva/count-agendados/${id}`)
   }
 }

@@ -41,6 +41,7 @@ import { ShareButtonsModule } from 'ngx-sharebuttons/buttons';
 import { ShareIconsModule } from 'ngx-sharebuttons/icons';
 import { ListaCertificadosComponent } from './componentes/lista-certificados/lista-certificados.component';
 import { CompCent } from './globals';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 const rutas: Routes = [
   { path: '', component: HomeComponent },
@@ -108,7 +109,8 @@ const rutas: Routes = [
     ShareButtonsModule.withConfig({
       debug: true
     }),
-    ShareIconsModule
+    ShareIconsModule,
+    NgxPaginationModule
   ],
   providers: [
     JwksValidationHandler,

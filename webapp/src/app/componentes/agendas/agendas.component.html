@@ -14,7 +14,7 @@
               <th></th>
           </tr>
         </thead>
-        <tbody *ngFor="let agenda of agendas">
+        <tbody *ngFor="let agenda of agendas | paginate: { itemsPerPage: 7, currentPage: p }">
           <tr>
             <td>{{ agenda.id }}</td>
             <td>{{ agenda.inicio }}</td>
@@ -30,4 +30,8 @@
           </tr>
         </tbody>
       </table>
+      <div class="center">
+        <pagination-controls (pageChange)="p = $event"></pagination-controls> 
+      </div>
+      
 </div>

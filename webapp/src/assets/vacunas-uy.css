@@ -94,7 +94,8 @@ select{
 .badge{
     border-radius: 17px;
 }
-.collection .collection-item.active {
+.collection .collection-item.active,
+.ngx-pagination .current {
     color: #fff !important;
     background-color: #044160 !important;
 }
